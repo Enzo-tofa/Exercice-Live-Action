@@ -1,7 +1,57 @@
-<div style="text-align:center; width: 700px">
-    <h1>
-        {{ title }}!
-    </h1>
-</div>
+<app-header></app-header>
 
-<div id="div-container" style="width: 700px;"></div>
+<body>
+    <div class="container">
+
+        <div class="container">
+            <h1>
+                {{ title }}
+            </h1>
+
+            <div class="container" id="select">
+
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-select [(value)]="matSelected" (selectionChange)="select()">
+                            <mat-option value="siteA">Site A</mat-option>
+                            <mat-option value="siteB">Site B</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" class="btn btn-danger" *ngIf="buttonAppear" (click)="reset()">Cancel</button>
+                    <button type="button" class="btn btn-success" *ngIf="buttonAppear" (click)="update()">Update</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <figure class="highcharts-figure">
+                <div class="spinner-border text-primary" id="loading0" *ngIf="loading1" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div id="graphe1">
+                    <div id="container" #container *ngIf="loading1===false"></div>
+                    <div id="agregat" *ngIf="loading1===false">
+                        <p>Average: {{average}}</p>
+                    </div>
+                </div>
+            </figure>
+        </div>
+
+        <div class="container">
+            <figure class="highcharts-figure">
+                <div class="spinner-border text-primary" id="loading2" *ngIf="loading1" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div id="graphe2">
+                    <div id="container2" #container2 *ngIf="loading1===false"></div>
+                    <div id="agregat2" *ngIf="loading1===false">
+                        <p>Max : {{max}}MB</p>
+                    </div>
+                </div>
+            </figure>
+        </div>
+    </div>
+</body>

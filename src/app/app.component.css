@@ -1,0 +1,38 @@
+#select {
+    display: flex;
+    height: 6vh;
+    margin: 5px;
+}
+
+#select div {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+h1 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 3vh;
+    margin: 3vh;
+    margin-left: 0;
+}
+
+#loading2,
+#loading0 {
+    margin-left: 50%;
+    margin-bottom: 15%;
+    margin-top: 15%;
+}
+
+#container,
+#container2 {
+    width: 80%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#agregat,
+#agregat2 {
+    width: 20%;
+    display: inline-block;
+    vertical-align: top;
+}
