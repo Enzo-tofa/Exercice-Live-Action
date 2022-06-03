@@ -13,29 +13,22 @@ import { FormControl } from '@angular/forms';
 export class AppComponent {
   title = 'Exercice Enzo';
   chartOptions: any;
-
-
   sites = [
     { value: 'siteA', viewValue: 'Site A' },
     { value: 'siteB', viewValue: 'Site B' },
   ];
-
   buttonAppear = false;
   matSelected = 'siteA';
   siteChoosen = 'siteA';
   loading1 = false;
-
-  average:number=0;
-  max:number=0;
-
-  constructor(private httpService: HttpClient) { }
-
+  average: number = 0;
+  max: number = 0;
   public request: RequestHtml[] = [];
   public chartData: any;
+  constructor(private httpService: HttpClient) { }
 
   ngOnInit() {
-    this.generate();      
-
+    this.generate();
   }
 
   generate() {
@@ -47,25 +40,21 @@ export class AppComponent {
     }, 2000);
   }
 
-
   createChart(container, matSelected, title, color) {
     this.httpService.get<any[]>('./assets/' + matSelected + '.json', { responseType: 'json' }).subscribe(
       data => {
         this.request = data as RequestHtml[];
-        let a : any = Object.values(this.request)[2];
-
+        let a: any = Object.values(this.request)[2];
         this.chartData = {
-
           title: {
             text: title
           },
           accessibility: {
             description: 'This is the most used desktop screen reader'
-        },
+          },
           yAxis: {
             type: 'linear',
           },
-
           xAxis: {
             type: 'datetime',
           },
@@ -74,7 +63,6 @@ export class AppComponent {
             color: color,
             data: a
           },],
-
           responsive: {
             rules: [{
               condition: {
@@ -89,28 +77,25 @@ export class AppComponent {
               }
             }]
           }
-          
-
         };
         Highcharts.setOptions({
           time: {
             timezone: 'Europe/London'
           }
         });
-        this.showChart(container);  
-        this.max=this.getMax(a);
-        this.average=this.getAverage(a);      
+        this.showChart(container);
+        this.max = this.getMax(a);
+        this.average = this.getAverage(a);
       },
       (err: HttpErrorResponse) => {
         console.log(err.message);
       }
     );
-    
   }
+
   showChart(container) {
     Highcharts.chart(container, this.chartData);
   }
-
 
   select() {
     this.buttonAppear = true;
@@ -140,35 +125,30 @@ export class AppComponent {
     }
   }
 
-
-
-  getAverage(data:any[]){
-    let sum:number=0;
-    for(let i=0;i<data.length;i++){
-      sum+=data[i][1];
+  getAverage(data: any[]) {
+    let sum: number = 0;
+    for (let i = 0; i < data.length; i++) {
+      sum += data[i][1];
     }
-    let average=sum/data.length;
-    return average/1000000;
+    let average = sum / data.length;
+    return average / 1000000;
   }
 
-  getMax(data:any[]){
-    let max:number=0;
-    for(let i=0;i<data.length;i++){
-      if(max<data[i][1]){
-        max=data[i][1]
+  getMax(data: any[]) {
+    let max: number = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (max < data[i][1]) {
+        max = data[i][1]
       }
     }
-    return max/1000000;
+    return max / 1000000;
   }
-  
 }
-
 
 interface RequestHtml {
   id: string;
   name: string;
   trafficOut: number[];
   unit: string;
-
 }
 

@@ -2,14 +2,9 @@
 
 <body>
     <div class="container">
-
         <div class="container">
-            <h1>
-                {{ title }}
-            </h1>
-
+            <h1>{{ title }}</h1>
             <div class="container" id="select">
-
                 <div>
                     <mat-form-field appearance="fill">
                         <mat-select [(value)]="matSelected" (selectionChange)="select()">
@@ -18,14 +13,12 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                     <button type="button" class="btn btn-danger" *ngIf="buttonAppear" (click)="reset()">Cancel</button>
                     <button type="button" class="btn btn-success" *ngIf="buttonAppear" (click)="update()">Update</button>
                 </div>
             </div>
         </div>
-
         <div class="container">
             <figure class="highcharts-figure">
                 <div class="spinner-border text-primary" id="loading0" *ngIf="loading1" role="status">
@@ -39,7 +32,6 @@
                 </div>
             </figure>
         </div>
-
         <div class="container">
             <figure class="highcharts-figure">
                 <div class="spinner-border text-primary" id="loading2" *ngIf="loading1" role="status">
