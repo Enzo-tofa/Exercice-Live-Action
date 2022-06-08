@@ -21,8 +21,9 @@ export class AppComponent {
   matSelected = 'siteA';
   siteChoosen = 'siteA';
   loading1 = false;
-  average: number = 0;
-  max: number = 0;
+  average: number|string = 0;
+  max: number|string = 0;
+
   public request: RequestHtml[] = [];
   public chartData: any;
   constructor(private httpService: HttpClient) { }
@@ -131,7 +132,7 @@ export class AppComponent {
       sum += data[i][1];
     }
     let average = sum / data.length;
-    return average / 1000000;
+    return (average / 1000000).toFixed(2);
   }
 
   getMax(data: any[]) {
@@ -141,7 +142,7 @@ export class AppComponent {
         max = data[i][1]
       }
     }
-    return max / 1000000;
+    return (max / 1000000).toFixed(2);
   }
 }
 
